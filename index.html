@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- =====================================================================
+       КРОК 1 ДЛЯ УЧНЯ: Зміни текст усередині тегу <title> на своє прізвище!
+       Цей текст відображається на вкладці браузера.
+       ===================================================================== -->
+  <title>Мій перший сайт у мережі — Практична робота № 4</title>
+
+  <style>
+    /* =====================================================================
+       КРОК 2 ДЛЯ УЧНЯ: Тут можна змінити головний колір сторінки (--accent)
+       Наприклад: #2563eb (синій), #16a34a (зелений), #9333ea (фіолетовий)
+       ===================================================================== */
+    :root {
+      --bg-page: #0f172a;
+      --bg-card: #1e293b;
+      --bg-subcard: #0b1120;
+      --border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      background: radial-gradient(circle at top right, #1e293b 0%, var(--bg-page) 60%);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px 14px 48px;
+    }
+
+    .wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Шапка сайту */
+    .hero {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.16);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      color: #6ee7b7;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .status-pill.local-mode {
+      background: rgba(245, 158, 11, 0.16);
+      border-color: rgba(245, 158, 11, 0.45);
+      color: #fcd34d;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 2.15rem);
+      line-height: 1.2;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #ffffff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Картки розділів */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e2e8f0;
+    }
+
+    /* Блок автоматичної діагностики сервера та домену */
+    .server-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .server-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-tile {
+      background: var(--bg-subcard);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .info-tile .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .info-tile .value {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #38bdf8;
+      word-break: break-all;
+    }
+
+    .url-banner {
+      background: var(--bg-subcard);
+      border: 1px dashed var(--accent);
+      border-radius: 12px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 0.88rem;
+      color: #a7f3d0;
+      word-break: break-all;
+    }
+
+    /* Форма паспорта сайту */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 140px 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 680px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    input, select {
+      width: 100%;
+      background: var(--bg-subcard);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 11px 12px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform 0.1s, background-color 0.2s;
+      min-height: 44px;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: #052e16;
+      font-weight: 700;
+    }
+
+    .btn-outline {
+      background: var(--bg-subcard);
+      border-color: var(--border);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+    }
+
+    /* Згенерована картка-візитівка для скриншоту вчителю */
+    .passport-preview {
+      margin-top: 16px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(16, 185, 129, 0.12));
+      border: 1px solid rgba(59, 130, 246, 0.45);
+      border-radius: 14px;
+      padding: 16px;
+      display: none;
+    }
+
+    .passport-preview.visible {
+      display: block;
+    }
+
+    /* Чекліст кроків */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--bg-subcard);
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .check-item:hover {
+      border-color: var(--accent);
+    }
+
+    .check-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      accent-color: var(--success);
+      cursor: pointer;
+    }
+
+    .check-item.checked span {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    /* Підказка по редагуванню коду */
+    .code-hint {
+      background: #020617;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.84rem;
+      color: #cbd5e1;
+      overflow-x: auto;
+    }
+
+    .code-hint .hl {
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    /* Повідомлення внизу екрана */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      border: 1px solid var(--success);
+      color: #6ee7b7;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 1000;
+    }
+
+    /* Полотно для конфетті */
+    #confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="confettiCanvas"></canvas>
+
+<div class="wrapper">
+  <!-- =====================================================================
+       ШАПКА САЙТУ
+       ===================================================================== -->
+  <header class="hero">
+    <div id="deployBadge" class="status-pill">
+      🚀 ДЕПЛОЙ УСПІШНИЙ! Сайт працює на реальному сервері
+    </div>
+
+    <!-- КРОК 3 ДЛЯ УЧНЯ: Можеш змінити головний заголовок <h1> нижче на власний! -->
+    <h1>Вітаю! Це мій перший сайт в Інтернеті</h1>
+    
+    <p>
+      Виконано в межах <strong>Практичної роботи № 4</strong> з інформатики («Розміщення сайту на сервері»).
+      Сторінка створена в одному автономному файлі <code>index.html</code>.
+    </p>
+  </header>
+
+  <!-- =====================================================================
+       БЛОК 1: АВТОМАТИЧНА ПЕРЕВІРКА ДОМЕНУ ТА СЕРВЕРА
+       ===================================================================== -->
+  <section class="card">
+    <div class="card-title">🌐 Інформація про сервер і доменне ім'я</div>
+    
+    <div class="server-grid">
+      <div class="info-tile">
+        <div class="label">Доменне ім'я (Host)</div>
+        <div class="value" id="hostDisplay">Визначається...</div>
+      </div>
+      <div class="info-tile">
+        <div class="label">Протокол з'єднання</div>
+        <div class="value" id="protocolDisplay">Визначається...</div>
+      </div>
+      <div class="info-tile">
+        <div class="label">Середовище запуску</div>
+        <div class="value" id="envDisplay">Визначається...</div>
+      </div>
+    </div>
+
+    <div class="url-banner" id="fullUrlDisplay">
+      Повна URL-адреса: завантаження...
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       БЛОК 2: ПАСПОРТ МОГО ПЕРШОГО САЙТУ (ЗБЕРІГАЄТЬСЯ В БРАУЗЕРІ)
+       ===================================================================== -->
+  <section class="card">
+    <div class="card-title">🪪 Паспорт мого першого сайту</div>
+    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px;">
+      Заповни свої дані після завантаження сайту на хостинг, натисни <strong>«Зберегти картку автора»</strong> та зроби скриншот для звіту вчителю.
+    </p>
+
+    <div class="form-grid">
+      <div class="field">
+        <label for="authorName">Автор сайту (Прізвище та Ім'я)</label>
+        <input type="text" id="authorName" placeholder="Наприклад: Мельник Софія" />
+      </div>
+      <div class="field">
+        <label for="authorClass">Клас</label>
+        <input type="text" id="authorClass" placeholder="10-А" />
+      </div>
+      <div class="field">
+        <label for="hostingProvider">Обраний хостинг</label>
+        <select id="hostingProvider">
+          <option value="GitHub Pages">GitHub Pages (username.github.io)</option>
+          <option value="zzz.com.ua">zzz.com.ua (Безкоштовний хостинг)</option>
+          <option value="Netlify">Netlify (netlify.app)</option>
+          <option value="Vercel">Vercel (vercel.app)</option>
+          <option value="Інший хостинг">Інший хостинг</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="savePassport()">💾 Зберегти картку автора</button>
+      <button class="btn btn-outline" onclick="copySiteUrl()">🔗 Скопіювати URL для здачі вчителю</button>
+      <button class="btn btn-success" onclick="launchConfetti()">🎉 Я задеплоїв сайт!</button>
+    </div>
+
+    <!-- Згенерована картка-візитівка -->
+    <div class="passport-preview" id="passportCard">
+      <div style="font-size: 0.78rem; text-transform: uppercase; color: #93c5fd; font-weight: 700; margin-bottom: 6px;">
+        ✅ Підтвердження публікації вебресурсу
+      </div>
+      <div style="font-size: 1.15rem; font-weight: 800; margin-bottom: 4px;" id="cardAuthorLine">—</div>
+      <div style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 4px;" id="cardHostingLine">—</div>
+      <div style="font-size: 0.85rem; font-family: monospace; color: #6ee7b7; word-break: break-all;" id="cardUrlLine">—</div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       БЛОК 3: ІНТЕРАКТИВНИЙ ЧЕКЛІСТ УЧНЯ
+       ===================================================================== -->
+  <section class="card">
+    <div class="card-title">✅ Чекліст виконання: «Як я це зробив»</div>
+    <ul class="checklist" id="checklist">
+      <li class="check-item" onclick="toggleCheck(this, 0)">
+        <input type="checkbox" id="chk0" onclick="event.stopPropagation(); toggleCheck(this.parentElement, 0)" />
+        <span><strong>Крок 1.</strong> Зареєструвався на безкоштовному хостингу (GitHub Pages / zzz.com.ua / Netlify / Vercel).</span>
+      </li>
+      <li class="check-item" onclick="toggleCheck(this, 1)">
+        <input type="checkbox" id="chk1" onclick="event.stopPropagation(); toggleCheck(this.parentElement, 1)" />
+        <span><strong>Крок 2.</strong> Отримав доменне ім'я, що містить моє прізвище латиницею (наприклад, <code>melnyk10a.github.io</code>).</span>
+      </li>
+      <li class="check-item" onclick="toggleCheck(this, 2)">
+        <input type="checkbox" id="chk2" onclick="event.stopPropagation(); toggleCheck(this.parentElement, 2)" />
+        <span><strong>Крок 3.</strong> Завантажив файл <code>index.html</code> у кореневу папку сервера (<code>public_html</code> або корінь репозиторію).</span>
+      </li>
+      <li class="check-item" onclick="toggleCheck(this, 3)">
+        <input type="checkbox" id="chk3" onclick="event.stopPropagation(); toggleCheck(this.parentElement, 3)" />
+        <span><strong>Крок 4.</strong> Відкрив сайт за URL-адресою у браузері та надіслав посилання вчителю.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- =====================================================================
+       БЛОК 4: ПІДКАЗКА ПО РЕДАГУВАННЮ КОДУ ДЛЯ УЧНІВ
+       ===================================================================== -->
+  <section class="card">
+    <div class="card-title">🛠️ Як персоналізувати цей файл перед завантаженням?</div>
+    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;">
+      Відкрий файл <code>index.html</code> у Блокноті, VS Code або прямо в редакторі GitHub і зміни виділені рядки:
+    </p>
+    <div class="code-hint">
+      &lt;!-- 1. Заголовок на вкладці браузера --&gt;<br>
+      &lt;title&gt;<span class="hl">Мій перший сайт — Прізвище Ім'я</span>&lt;/title&gt;<br><br>
+      &lt;!-- 2. Головний колір оформлення у блоці :root --&gt;<br>
+      --accent: <span class="hl">#3b82f6</span>; &lt;!-- Спробуй #10b981 або #8b5cf6 --&gt;<br><br>
+      &lt;!-- 3. Головний заголовок на сторінці --&gt;<br>
+      &lt;h1&gt;<span class="hl">Вітаю! Це мій перший сайт в Інтернеті</span>&lt;/h1&gt;
+    </div>
+  </section>
+</div>
+
+<div class="toast" id="toast">Повідомлення</div>
+
+<script>
+  /* =========================================================================
+     1. АВТОМАТИЧНЕ ВИЗНАЧЕННЯ ДОМЕНУ ТА ПРОТОКОЛУ
+     ========================================================================= */
+  function detectHostingEnvironment() {
+    const protocol = window.location.protocol; // 'https:', 'http:' або 'file:'
+    const hostname = window.location.hostname; // Доменне ім'я або порожньо для file://
+    const fullUrl = window.location.href;
+
+    const badge = document.getElementById('deployBadge');
+    const hostEl = document.getElementById('hostDisplay');
+    const protoEl = document.getElementById('protocolDisplay');
+    const envEl = document.getElementById('envDisplay');
+    const urlEl = document.getElementById('fullUrlDisplay');
+
+    if (protocol === 'file:' || !hostname) {
+      // Файл відкрито локально з диска комп'ютера або телефона
+      badge.className = 'status-pill local-mode';
+      badge.textContent = '⚠️ ЛОКАЛЬНИЙ РЕЖИМ: Файл відкрито з диска (file://)';
+      hostEl.textContent = 'Немає (локальний файл)';
+      hostEl.style.color = '#fcd34d';
+      protoEl.textContent = 'file:// (без сервера)';
+      envEl.textContent = 'Локальний ПК / Смартфон';
+      urlEl.innerHTML = '💡 <strong>Підказка:</strong> Зараз файл відкрито локально з диска. Завантаж <code>index.html</code> на хостинг (GitHub Pages, zzz.com.ua, Netlify, Vercel), щоб побачити тут свій реальний домен!';
+    } else {
+      // Сайт успішно відкрито на реальному сервері або локальному вебсервері
+      badge.className = 'status-pill';
+      badge.textContent = '🚀 ДЕПЛОЙ УСПІШНИЙ! Сайт працює на реальному сервері';
+      hostEl.textContent = hostname;
+      protoEl.textContent = protocol.replace(':', '').toUpperCase() + (protocol === 'https:' ? ' (Захищено 🔒)' : ' (Відкритий)');
+      envEl.textContent = 'Вебсервер онлайн';
+      urlEl.innerHTML = `🌍 <strong>Робоча URL-адреса сайту:</strong> ${fullUrl}`;
+    }
+  }
+
+  /* =========================================================================
+     2. ЗБЕРЕЖЕННЯ ТА ВІДОБРАЖЕННЯ ПАСПОРТА АВТОРА (localStorage)
+     ========================================================================= */
+  function savePassport() {
+    const name = document.getElementById('authorName').value.trim();
+    const studentClass = document.getElementById('authorClass').value.trim();
+    const hosting = document.getElementById('hostingProvider').value;
+
+    if (!name) {
+      showToast('⚠️ Введіть спочатку Прізвище та Ім’я!');
+      document.getElementById('authorName').focus();
+      return;
+    }
+
+    const data = { name, studentClass, hosting };
+    localStorage.setItem('pr4_site_passport', JSON.stringify(data));
+    renderPassportCard(data);
+    showToast('✅ Картку автора збережено!');
+  }
+
+  function renderPassportCard(data) {
+    const card = document.getElementById('passportCard');
+    const domain = window.location.hostname || 'локальний файл (очікує завантаження на хостинг)';
+    const fullUrl = window.location.href;
+
+    document.getElementById('cardAuthorLine').textContent =
+      `${data.name}${data.studentClass ? ' (' + data.studentClass + ' клас)' : ''}`;
+    document.getElementById('cardHostingLine').textContent =
+      `Хостинг: ${data.hosting} • Домен: ${domain}`;
+    document.getElementById('cardUrlLine').textContent = `URL: ${fullUrl}`;
+
+    card.classList.add('visible');
+  }
+
+  function loadSavedData() {
+    const raw = localStorage.getItem('pr4_site_passport');
+    if (raw) {
+      try {
+        const data = JSON.parse(raw);
+        document.getElementById('authorName').value = data.name || '';
+        document.getElementById('authorClass').value = data.studentClass || '';
+        if (data.hosting) document.getElementById('hostingProvider').value = data.hosting;
+        renderPassportCard(data);
+      } catch (e) {}
+    }
+
+    // Відновлення стану чекліста
+    const checks = JSON.parse(localStorage.getItem('pr4_checklist') || '[false,false,false,false]');
+    checks.forEach((val, idx) => {
+      const cb = document.getElementById('chk' + idx);
+      if (cb) {
+        cb.checked = val;
+        cb.parentElement.classList.toggle('checked', val);
+      }
+    });
+  }
+
+  function toggleCheck(liElement, index) {
+    const cb = document.getElementById('chk' + index);
+    if (event && event.target !== cb) {
+      cb.checked = !cb.checked;
+    }
+    liElement.classList.toggle('checked', cb.checked);
+
+    const states = [0, 1, 2, 3].map(i => document.getElementById('chk' + i).checked);
+    localStorage.setItem('pr4_checklist', JSON.stringify(states));
+  }
+
+  /* =========================================================================
+     3. КОПІЮВАННЯ URL ДЛЯ ЗДАЧІ ВЧИТЕЛЮ (працює і в iFrame, і на мобільних)
+     ========================================================================= */
+  function copySiteUrl() {
+    const url = window.location.href;
+    const name = document.getElementById('authorName').value.trim();
+    const textToCopy = name ? `${name} — Мій сайт: ${url}` : url;
+
+    const temp = document.createElement('textarea');
+    temp.value = textToCopy;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand('copy');
+    document.body.removeChild(temp);
+
+    showToast('📋 Посилання скопійовано! Встав його у Classroom / чат.');
+  }
+
+  function showToast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.style.display = 'block';
+    clearTimeout(window._t);
+    window._t = setTimeout(() => { el.style.display = 'none'; }, 3000);
+  }
+
+  /* =========================================================================
+     4. СВЯТКОВЕ КОНФЕТТІ ПРИ УСПІШНОМУ ДЕПЛОЇ
+     ========================================================================= */
+  function launchConfetti() {
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6', '#38bdf8'];
+    const particles = Array.from({ length: 110 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      size: Math.random() * 7 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      speedY: Math.random() * 3 + 2.5,
+      speedX: (Math.random() - 0.5) * 2.5,
+      angle: Math.random() * 360
+    }));
+
+    let frame = 0;
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.y += p.speedY;
+        p.x += p.speedX;
+        p.angle += 4;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.angle * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+        ctx.restore();
+      });
+      frame++;
+      if (frame < 130) {
+        requestAnimationFrame(animate);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    animate();
+    showToast('🎉 Вітаємо з першим релізом у продакшн!');
+  }
+
+  // Запуск при завантаженні сторінки
+  window.addEventListener('DOMContentLoaded', () => {
+    detectHostingEnvironment();
+    loadSavedData();
+  });
+</script>
+</body>
+</html>
